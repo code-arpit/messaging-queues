@@ -1,1 +1,1 @@
-# amazon-sqs
+# Messaing Queues
