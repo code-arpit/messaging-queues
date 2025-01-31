@@ -1,59 +1,24 @@
 import boto3
 
 # Create a boto3 sqs client
-sqs = boto3.client(
-        'sqs',
-        aws_access_key_id='<access_key>',
-        aws_secret_access_key='<secret_access_key>',
-        region_name='<region_name>'
-      )
-
+client = boto3.client(
+    "sqs",
+    aws_access_key_id="<access_key>",
+    aws_secret_access_key="<secret_access_key>",
+    region_name="<region_name>",
+)
 
 # Create a queue
 ## More on : 'https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sqs/client/create_queue.html'
 response = client.create_queue(
-    QueueName='string',
-    Attributes={
-        'string': 'string'
-    },
-    tags={
-        'string': 'string'
-    }
+    QueueName="string", Attributes={"string": "string"}, tags={"string": "string"}
 )
-
 
 # List queues
 ## More on : 'https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sqs/client/list_queues.html'
 response = client.list_queues()
 
-
-# Send Messages
-## More on : 'https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sqs/client/send_message.html'
-response = sqs.send_message(
-        QueueUrl=queue_url,
-        DelaySeconds=10,
-        MessageBody='string body to be send here'
-    )
-
-# Receive Messages
-## More on : 'https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sqs/client/receive_message.html'
-response = sqs.receive_message(
-        QueueUrl=queue_url,
-        AttributeNames=[
-            'SentTimestamp'
-        ],
-        MaxNumberOfMessages=1,
-        MessageAttributeNames=[
-            'All'
-        ],
-        VisibilityTimeout=0,
-        WaitTimeSeconds=0
-    )
-
 # Delete Messages
 ## More on : 'https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sqs/client/delete_message.html'
 
-response = client.delete_message(
-    QueueUrl='string',
-    ReceiptHandle='string'
-)
+response = client.delete_message(QueueUrl="string", ReceiptHandle="string")
